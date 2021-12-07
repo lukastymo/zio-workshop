@@ -27,16 +27,20 @@ work through those following chapters:
     ```bash
     git clone git@github.com:jdegoes/zio-workshop.git
     ```
-5. Launch `sbt`.
+3. Launch `sbt`.
 
     ```bash
     ./sbt
     ```
-6. Enter continuous compilation mode.
+4. Enter continuous compilation mode.
 
     ```bash
     sbt:zio-workshop> ~ compile
     ```
+# Solutions
+
+- https://github.com/twbraam/zio-workshop/blob/master/src/main/scala/net/degoes/zio/essentials/zio.scala
+
 
 # Legal
 

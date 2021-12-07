@@ -34,28 +34,31 @@ object zio_types {
    * An effect that might fail with an error of type `E` or succeed with a
    * value of type `A`.
    */
-  type FailOrSuccess[E, A] = ???
+//  type FailOrSuccess[E, A] = ZIO[Any, E, A]
+  type FailOrSuccess[E, A] = IO[E, A]
 
   /**
    * EXERCISE 2
    *
    * An effect that never fails and might succeed with a value of type `A`
    */
-  type Success[A] = ???
+  // type Success[A] = ZIO[Any, Nothing, A]
+  type Success[A] = UIO[A]
 
   /**
    * EXERCISE 3
    *
    * An effect that runs forever but might fail with `E`.
    */
-  type Forever[E] = ???
+  type Forever[E] = ZIO[Any, E, Nothing]
 
   /**
    * EXERCISE 4
    *
    * An effect that cannot fail or succeed with a value.
    */
-  type NeverStops = ???
+//  type NeverStops = ZIO[Any, Nothing, Nothing]
+  type NeverStops = UIO[Nothing]
 
   /**
    * EXERCISE 5
@@ -63,7 +66,7 @@ object zio_types {
    * An effect that may fail with a value of type `E` or succeed with a value
    * of type `A`, and doesn't require any specific environment.
    */
-  type IO[+E, +A] = ???
+  type IO[+E, +A] = ZIO[Any, E, A]
 
   /**
    * EXERCISE 6
@@ -71,7 +74,7 @@ object zio_types {
    * An effect that may fail with `Throwable` or succeed with a value of
    * type `A`, and doesn't require any specific environment.
    */
-  type Task[+A] = ???
+  type Task[+A] = ZIO[Any, Throwable, A]
 
   /**
    * EXERCISE 7
@@ -79,23 +82,23 @@ object zio_types {
    * An effect that cannot fail but may succeed with a value of type `A`,
    * and doesn't require any specific environment.
    */
-  type UIO[+A] = ???
+  type UIO[+A] = ZIO[Any, Nothing, A]
 
   /**
    * EXERCISE 8
    *
-   * An effect that may fail with `Throwable` or succeed with a value of 
+   * An effect that may fail with `Throwable` or succeed with a value of
    * type `A`, and which requires an `R` environment.
    */
-  type RIO[-R, +A] = ???
+  type RIO[-R, +A] = ZIO[R, Throwable, A]
 
   /**
    * EXERCISE 8
    *
-   * An effect that cannot fail, but may succeed with a value of 
+   * An effect that cannot fail, but may succeed with a value of
    * type `A`, and which requires an `R` environment.
    */
-  type URIO[-R, +A] = ???
+  type URIO[-R, +A] = ZIO[R, Nothing, A]
 }
 
 object zio_values {
@@ -219,7 +222,7 @@ object zio_values {
 
   /**
    * EXERCISE 13
-   * 
+   *
    * Write a simple hello world program.
    */
   object MyMain extends App {
@@ -937,7 +940,7 @@ object zio_environment {
    * Give the `configProgram` its dependencies by supplying it with both `Config`
    * and `Console` modules, and determine the type of the resulting effect.
    */
-  val provided = configProgram.provide(???) : ZIO[Any, Nothing, Int]
+  val provided = configProgram.provide(???): ZIO[Any, Nothing, Int]
 
   /**
    * EXERCISE 17
